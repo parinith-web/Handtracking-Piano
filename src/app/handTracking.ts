@@ -9,9 +9,9 @@ export function startHandTracking(video: HTMLVideoElement, onResults: any) {
 
     hands.setOptions({
         maxNumHands: 2,
-        modelComplexity: 1,
-        minDetectionConfidence: 0.7,
-        minTrackingConfidence: 0.7,
+        modelComplexity: 0,
+        minDetectionConfidence: 0.6,
+        minTrackingConfidence: 0.6,
     })
 
     hands.onResults(onResults)

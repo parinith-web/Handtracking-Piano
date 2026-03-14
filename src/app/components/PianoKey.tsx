@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 
 type KeyState = 'default' | 'active' | 'guided';
 
@@ -8,14 +8,22 @@ interface PianoKeyProps {
   index: number;
   state?: KeyState;
   activeColor?: string;
-  onPress?: () => void;
+  onPress?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  registerRef?: (el: HTMLButtonElement | null) => void;
 }
 
-export function PianoKey({ note, index, state = 'default', activeColor = '#FF6A3D', onPress }: PianoKeyProps) {
+export function PianoKey({ note, index, state = 'default', activeColor = '#FF6A3D', onPress, registerRef }: PianoKeyProps) {
   const [isHovered, setIsHovered] = useState(false);
-  
+
   const isBlackKey = note.includes('b') || note.includes('#');
-  
+
+  const refCallback = useCallback(
+    (el: HTMLButtonElement | null) => {
+      if (registerRef) registerRef(el);
+    },
+    [registerRef]
+  );
+
   const getKeyStyle = () => {
     switch (state) {
       case 'active':
@@ -32,7 +40,7 @@ export function PianoKey({ note, index, state = 'default', activeColor = '#FF6A3
         };
       default:
         return {
-          background: isHovered 
+          background: isHovered
             ? 'linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05))'
             : 'linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.02))',
           borderColor: 'rgba(255, 255, 255, 0.2)',
@@ -40,9 +48,10 @@ export function PianoKey({ note, index, state = 'default', activeColor = '#FF6A3
         };
     }
   };
-  
+
   return (
     <motion.button
+      ref={refCallback}
       className="relative flex flex-col items-center justify-end rounded-xl border-2 backdrop-blur-xl transition-all cursor-pointer"
       style={{
         width: isBlackKey ? '50px' : '70px',
@@ -50,22 +59,22 @@ export function PianoKey({ note, index, state = 'default', activeColor = '#FF6A3
         ...getKeyStyle(),
       }}
       initial={{ y: 20, opacity: 0 }}
-      animate={{ 
+      animate={{
         y: state === 'active' ? -5 : 0,
         opacity: 1,
         scale: state === 'active' ? 1.05 : 1,
       }}
-      transition={{ 
+      transition={{
         delay: index * 0.02,
         type: 'spring',
         stiffness: 300,
         damping: 20
       }}
-      whileHover={{ 
+      whileHover={{
         y: -3,
         scale: 1.02,
       }}
-      whileTap={{ 
+      whileTap={{
         y: 2,
         scale: 0.98,
       }}
@@ -79,13 +88,13 @@ export function PianoKey({ note, index, state = 'default', activeColor = '#FF6A3
           className="absolute -top-16 left-1/2 -translate-x-1/2"
           initial={{ y: 10, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ 
+          transition={{
             repeat: Infinity,
             repeatType: 'reverse',
             duration: 1,
           }}
         >
-          <div 
+          <div
             className="w-12 h-12 rounded-full border-4 backdrop-blur-sm"
             style={{
               borderColor: '#3B82F6',
@@ -95,9 +104,9 @@ export function PianoKey({ note, index, state = 'default', activeColor = '#FF6A3
           />
         </motion.div>
       )}
-      
+
       {/* Note label */}
-      <span 
+      <span
         className="mb-4 font-medium tracking-wider"
         style={{
           color: state === 'active' ? activeColor : state === 'guided' ? '#3B82F6' : 'rgba(255, 255, 255, 0.6)',
@@ -107,12 +116,12 @@ export function PianoKey({ note, index, state = 'default', activeColor = '#FF6A3
       >
         {note}
       </span>
-      
+
       {/* Inner glow */}
-      <div 
+      <div
         className="absolute inset-0 rounded-xl pointer-events-none"
         style={{
-          background: state === 'active' 
+          background: state === 'active'
             ? `radial-gradient(circle at 50% 100%, ${activeColor}40, transparent 70%)`
             : state === 'guided'
             ? 'radial-gradient(circle at 50% 100%, #3B82F640, transparent 70%)'
