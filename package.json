@@ -9,8 +9,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
     "@emotion/react": "11.14.0",
     "@emotion/styled": "11.14.1",
     "@mediapipe/camera_utils": "^0.3.1675466862",
@@ -53,9 +51,11 @@
     "input-otp": "1.4.2",
     "lucide-react": "0.487.0",
     "motion": "12.23.24",
+    "react": "^18.3.1",
     "react-day-picker": "8.10.1",
     "react-dnd": "16.0.1",
     "react-dnd-html5-backend": "16.0.1",
+    "react-dom": "^18.3.1",
     "react-hook-form": "7.55.0",
     "react-popper": "2.3.0",
     "react-resizable-panels": "2.1.7",
@@ -70,9 +70,9 @@
     "vaul": "1.1.2"
   },
   "devDependencies": {
-    "vite": "^6.3.5",
+    "@tailwindcss/vite": "^4.1.12",
     "@vitejs/plugin-react": "^4.7.0",
     "tailwindcss": "^4.1.12",
-    "@tailwindcss/vite": "^4.1.12"
+    "vite": "^6.4.1"
   }
 }
