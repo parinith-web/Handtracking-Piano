@@ -183,22 +183,11 @@ function App() {
         handType="right"
       />
 
-      {/* Floating stats/info */}
-      <div className="fixed bottom-8 right-8 z-50">
-        <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-xl p-4 shadow-2xl">
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2">
-              <div className="w-3 h-3 rounded-full bg-blue-500 animate-pulse"
-                style={{ boxShadow: '0 0 10px #3B82F6' }} />
-              <span className="text-white/80 text-sm">Right Hand</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-3 h-3 rounded-full bg-orange-500 animate-pulse"
-                style={{ boxShadow: '0 0 10px #FF6A3D' }} />
-              <span className="text-white/80 text-sm">Left Hand</span>
-            </div>
-          </div>
-        </div>
+      {/* Bottom hint */}
+      <div className="fixed inset-x-0 bottom-6 z-40 flex justify-center pointer-events-none">
+        <p className="px-4 py-2 rounded-full bg-black/50 border border-white/10 text-xs sm:text-sm text-white/70 backdrop-blur-md">
+          Tap anywhere to begin
+        </p>
       </div>
 
       {/* Cinematic vignette */}
