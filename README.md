@@ -1,4 +1,4 @@
-# 🎹 Handtracking Piano
+# Handtracking Piano
 
 <div align="center">
 
@@ -10,28 +10,26 @@
 
 **A real-time, gesture-controlled virtual piano powered by computer vision and ML-based hand landmark detection — playable entirely without physical contact.**
 
-[🚀 Live Demo](https://handtracking-piano.vercel.app/) · [📁 Source Code](https://github.com/parinith-web/Handtracking-Piano) · [🐛 Report Bug](https://github.com/parinith-web/Handtracking-Piano/issues)
+[Live Demo](https://handtracking-piano.vercel.app/) · [Source Code](https://github.com/parinith-web/Handtracking-Piano) · [Report Bug](https://github.com/parinith-web/Handtracking-Piano/issues)
 
 </div>
 
 ---
 
-## 📌 Table of Contents
+## Table of Contents
 
-- [Overview](#-overview)
-- [System Architecture](#-system-architecture)
-- [Technology Stack](#-technology-stack)
-- [Performance Metrics](#-performance-metrics)
-- [Features](#-features)
-- [Getting Started](#-getting-started)
-- [Project Structure](#-project-structure)
-- [Pipeline Overview](#-ml-inference-pipeline)
-- [Deployment](#-deployment)
-- [Attributions](#-attributions)
+- [Overview](#overview)
+- [System Architecture](#system-architecture)
+- [Technology Stack](#technology-stack)
+- [Performance Metrics](#performance-metrics)
+- [Features](#features)
+- [Getting Started](#getting-started)
+- [ML Inference Pipeline](#ml-inference-pipeline)
+- [Deployment](#deployment)
 
 ---
 
-## 🔍 Overview
+## Overview
 
 **Handtracking Piano** is a touchless, browser-native musical instrument that leverages **real-time ML inference** via Google's MediaPipe Hands to detect and track 21 hand landmarks per frame at sub-50ms latency. Finger positions are mapped to piano key triggers using a custom collision detection algorithm, producing audio output via the **Tone.js** Web Audio synthesis engine.
 
@@ -40,7 +38,7 @@ The application requires **no plugins, no downloads, and no hardware peripherals
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │                        USER INTERACTION                         │
-│              🖐️  Physical Hand Gesture in 3D Space              │
+│                Physical Hand Gesture in 3D Space                │
 └───────────────────────────┬─────────────────────────────────────┘
                             │  getUserMedia() — WebRTC API
                             ▼
@@ -73,7 +71,7 @@ The application requires **no plugins, no downloads, and no hardware peripherals
 
 ---
 
-## 🏗️ System Architecture
+## System Architecture
 
 ```
 handtracking-piano/
@@ -93,7 +91,7 @@ handtracking-piano/
 
 ---
 
-## 🧰 Technology Stack
+## Technology Stack
 
 | Layer | Technology | Purpose |
 |---|---|---|
@@ -109,7 +107,7 @@ handtracking-piano/
 
 ---
 
-## ⚡ Performance Metrics
+## Performance Metrics
 
 ```
 ┌──────────────────────────────────────────────┐
@@ -138,19 +136,19 @@ handtracking-piano/
 
 ---
 
-## ✨ Features
+## Features
 
-- 🖐️ **Touchless Gesture Control** — Piano keys triggered by fingertip proximity using real-time landmark collision detection
-- 🧠 **On-Device ML Inference** — MediaPipe Hands runs entirely client-side via WebAssembly; no server round-trips, zero data exfiltration
-- 🎵 **Polyphonic Audio Synthesis** — Simultaneous multi-note playback via Tone.js `PolySynth`, with configurable oscillator waveforms
-- 🌌 **Futuristic HUD UI** — Glassmorphism-inspired interface with GPU-accelerated keypress animations
-- 📱 **Responsive Layout** — Adaptive piano octave rendering across viewport breakpoints
-- ⚡ **Zero-Install Deployment** — Fully browser-native; no WebGL extensions, no native binaries required
-- 🔒 **Privacy-First** — All webcam processing occurs locally; no video frames transmitted to any server
+- **Touchless Gesture Control** — Piano keys triggered by fingertip proximity using real-time landmark collision detection
+- **On-Device ML Inference** — MediaPipe Hands runs entirely client-side via WebAssembly; no server round-trips, zero data exfiltration
+- **Polyphonic Audio Synthesis** — Simultaneous multi-note playback via Tone.js `PolySynth`, with configurable oscillator waveforms
+- **Futuristic HUD UI** — Glassmorphism-inspired interface with GPU-accelerated keypress animations
+- **Responsive Layout** — Adaptive piano octave rendering across viewport breakpoints
+- **Zero-Install Deployment** — Fully browser-native; no WebGL extensions, no native binaries required
+- **Privacy-First** — All webcam processing occurs locally; no video frames transmitted to any server
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -177,7 +175,7 @@ npm run dev
 
 Open `http://localhost:5173` in your browser.
 
-> ⚠️ **HTTPS Required for Production:** Browser's `getUserMedia()` API mandates a secure context (`https://` or `localhost`). Vercel provides automatic TLS termination for all deployments.
+> **HTTPS Required for Production:** Browser's `getUserMedia()` API mandates a secure context (`https://` or `localhost`). Vercel provides automatic TLS termination for all deployments.
 
 ### Build for Production
 
@@ -193,7 +191,7 @@ Output artifacts are emitted to `/dist` — fully static, CDN-deployable.
 
 ---
 
-## 🧠 ML Inference Pipeline
+## ML Inference Pipeline
 
 MediaPipe Hands returns a normalized landmark graph per hand per frame:
 
@@ -215,7 +213,7 @@ The **index fingertip (landmark index `8`)** is projected from normalized `[0,1]
 
 ---
 
-## 📦 Deployment
+## Deployment
 
 This project is deployed on **Vercel** with the following configuration:
 
@@ -230,27 +228,19 @@ This project is deployed on **Vercel** with the following configuration:
 
 **Live URL:** [https://handtracking-piano.vercel.app/](https://handtracking-piano.vercel.app/)
 
-CI/CD is handled via GitHub Actions — every push to `main` triggers an automatic production deployment through Vercel's build pipeline.
+Every push to `main` triggers an automatic production deployment through Vercel's build pipeline.
 
 ---
 
-## 📋 Attributions
+## License
 
-See [ATTRIBUTIONS.md](./ATTRIBUTIONS.md) for full third-party library licenses and design credits.
-
-UI design reference: [Figma — Futuristic Virtual Piano UI](https://www.figma.com/design/CHhqb3c1iIe79DzjHRXDZS/Futuristic-Virtual-Piano-UI)
-
----
-
-## 📄 License
-
-This project is open source. See the repository for license details.
+This project is MIT licensed. See the repository for license details.
 
 ---
 
 <div align="center">
 
-Built with ❤️ by [parinith-web](https://github.com/parinith-web)
+Developed by [parinith-web](https://github.com/parinith-web)
 
 ⭐ Star this repo if you found it useful!
 
